@@ -1,27 +1,21 @@
-*{
-  margin:0;
-  padding:o;
+* {
+  margin: 0;
+  padding: o;
 }
 
-body{
-  background-color:#ffdeca;
+body {
+  background-color: #ffdeca;
 }
 
 h1 {
   text-align: center;
-  margin:20px;
-  color:#2c1203;
+  margin: 20px;
+  color: #2c1203;
   text-transform: uppercase;
   text-decoration: underline;
 }
 
-
-
-
-
-
-
-  .Container{
+.Container {
   display: flex;
   flex-wrap: wrap;
   max-width: 80%;
@@ -34,6 +28,20 @@ h1 {
   background: coral;
   box-shadow: 3px 2px 3px silver;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  justify-content: space-between;
+}
+
+.cardContent {
+  height: 300px;
+}
+
+.bioWrap {
+  color: whitesmoke;
+  margin: 15px;
+  text-align: justify;
 }
 
 .card:hover {
