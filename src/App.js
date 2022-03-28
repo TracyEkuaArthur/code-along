@@ -3,74 +3,41 @@ import { useEffect, useState } from "react";
 import "./App.css";
 // import writers from "./writers";
 import ProfileCard from "./ProfileCard";
+import ProfileForm from "../src/components/ProfileForm";
 
 function App() {
-  const [data, setData] = useState({
-    writers: [],
-    loading: false,
-  });
+  const [allProfile, setAllProfile] = useState([
+    {
+      firstName:"Hannah",
+      lastName:"Montana",
+      email:"hannah.montana@email.com",
+      phone:"+233 024 455 000"
+    },
+  ]);
 
-  const handleClick = () => {
-    setData((prevData) => ({
-      ...prevData,
-      loading: true,
-    }));
-
-    setTimeout(() => {
-      const getWriters = async () => {
-        const response = await fetch("/writers.json");
-        const data = await response.json();
-        console.log(data);
-        setData({
-          writers: data,
-          loadind: false,
-        });
-      };
-
-      // setTimeout(() => {
-      //   const getWriters = async () => {
-      //     const response = await fetch("/writers.json");
-      //     const data = await response.json();
-      //     console.log(data);
-      //     setData(data);
-      //   };
-      //   getWriters();
-      // }, 2000);
-    });
+  const submit = (profile) => {
+    const arr = allProfile;
+    arr.push(profile);
+    setAllProfile(arr);
   };
-
-  if (data.loading) {
-    return (
-      <div>
-        <h1>Writers Profiles</h1>
-        <div className="container">
-          <div className="card action">
-            <p className="infoText"> Loading...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div>
-      <h1>Writer Profile</h1>
+      <h1>Writer Profiles</h1>
       <div className="container">
-        {data.writers.length === 0 ? (
-          <div className="card action">
-            <p className="infoText">Oops...no writer profile from</p>
-            <buttons className="actionBtn" onClick={handleClick}>
-              {" "}
-              Get writers{" "}
-            </buttons>
-          </div>
-        ) : (
-          data.writers.map((writer) => <ProfileCard writer={writer} />)
-        )}
-        ;
+        <ProfileForm submit={submit} />
+        {allProfile.map((writer) => (
+          <ProfileCard key={writer.id} writer={writer} />
+        ))}
       </div>
     </div>
   );
 }
+
+    
+
+
+  
+
 
 export default App;
