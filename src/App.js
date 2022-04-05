@@ -4,6 +4,8 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import Home from "./pages/Home";
 import Navbar from './components/Navbar/Navbar';
+import BlogList from "./pages/BlogList";
+import BlogDetail from "./pages/BlogDetail";
 
 const App = () => {
   return (
@@ -11,7 +13,10 @@ const App = () => {
     <Navbar />
     <Routes>
       <Route path="about" element={<About/>} />
-      <Route path="blog" element={<Blog/>} />
+      <Route path="blog" element={<Blog/>}>
+      <Route path="" element={<BlogList/>} />
+      <Route path=":blog" element={<BlogDetail/>} />
+      </Route>
       <Route path="/" element={<Home/>} />
     </Routes>
     
